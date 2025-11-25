@@ -42,7 +42,7 @@ zip_code=form.getvalue("sent2")
 memo_title=form.getvalue("sent3")
 
 from openai import OpenAI
-from .. import key_list
+import key_list
 
 client = OpenAI(api_key=key_list.API_KEY)
 

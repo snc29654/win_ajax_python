@@ -31,7 +31,7 @@ sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
 
 zip_code=[]
 def  get_link(url):
-    f = open('links.txt', 'w', encoding='UTF-8')
+    #f = open('links.txt', 'w', encoding='UTF-8')
     res = requests.get(url)
     res.raise_for_status()
 
@@ -39,14 +39,14 @@ def  get_link(url):
     links = soup.select("a")
 
     type_links=type(links)
-    f.write(str(type_links))
-    f.write("\n")
+    #f.write(str(type_links))
+    #f.write("\n")
 
     keys = set()
     results = []
     for link in links:
-        f.write(link.text)
-        f.write("\n")
+        #f.write(link.text)
+        #f.write("\n")
         link_url = link.get("href")
         if not link_url:
             continue
@@ -72,8 +72,8 @@ def  get_link(url):
 
 def  copy_link(url,filter):
     results = get_link(url)
-    f = open('tracefile.txt', 'w', encoding='UTF-8')
-    f2 = open('tracefile2.txt', 'w', encoding='UTF-8')
+    #f = open('tracefile.txt', 'w', encoding='UTF-8')
+    #f2 = open('tracefile2.txt', 'w', encoding='UTF-8')
     text = ""
     for result in results:
         result_text = result["text"]
@@ -105,25 +105,25 @@ def  copy_link(url,filter):
 
 
 
-            f2.write(result["url"])
-            f2.write("\n")
+            #f2.write(result["url"])
+            #f2.write("\n")
 
-            f.write(result["text"])
-            f.write("<br>")
-            f.write(result["url"])
-            f.write("<br>")
-            f.write("<br>")
-            f.write("\n")
+            #f.write(result["text"])
+            #f.write("<br>")
+            #f.write(result["url"])
+            #f.write("<br>")
+            #f.write("<br>")
+            #f.write("\n")
         else:
             if  filter in result_text:
                 text +=  "<a href= \"" + result["url"] +  "\"" +" target=\"_blank\"" + "</a>" +"<br>" +"\n"   
                 text +=  result["text"] +"<br>"   
-                f.write(result["text"])
-                f.write("<br>")
-                f.write(result["url"])
-                f.write("<br>")
-                f.write("<br>")
-                f.write("\n")
+                #f.write(result["text"])
+                #f.write("<br>")
+                #f.write(result["url"])
+                #f.write("<br>")
+                #f.write("<br>")
+                #f.write("\n")
 
 
     return(text)
@@ -163,8 +163,8 @@ with closing(sqlite3.connect(dbname)) as conn:
 
 print("Content-type: text/html\n")
 
-f = open('tracefile.txt', 'r', encoding='UTF-8')
-read_data=f.read()
+#f = open('tracefile.txt', 'r', encoding='UTF-8')
+#read_data=f.read()
 
 
 #print("<font color=\"red\">"  + "テキスト表示" + "</font>")
