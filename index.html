@@ -1,0 +1,1076 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>タイトル python -m http.server --cgi ;  http://localhost:8000/</title>
+</head>
+<body>
+    DB名<input type="text" id="text7" size="15" value="database2.db" /><br>
+    <button type="button" style="width:100px;height:50px" onclick="func_search()">ネット検索</button>
+    <button type="button" style="width:100px;height:50px"  onclick="func_db_search()" >DB検索 </button>
+    <button type="button" style="width:100px;height:50px"  onclick="func_db_search_detail()" >DB検索詳細 </button>
+    <button type="button" style="width:100px;height:50px"  onclick="func_db_search_cat()" >カテゴリ検索 </button>
+    <br>
+    <label for="area">下記に検索ワードを入れてください</label>
+    <br>
+    <input type="text" id="text2" size="80" value="" /><br>
+    <button type="button"  onclick="func_all()" >DBのすべてを表示 </button>
+    <button type="button"  onclick="func_head()" >DBのすべてを表示（詳細なし） </button>
+    <button type="button"  onclick="func_last()" >DBの最後を表示 </button><br>
+    <button type="button"  onclick="func_search_kind()" >カテゴリ別履歴 </button>
+    <select name="nameaction" id="nameaction">
+        <option value="お気に入り">お気に入り</option>
+        <option value="クリップ">クリップ</option>
+        <option value="ニュース">ニュース</option>
+        <option value="URLリスト">URLリスト</option>
+        <option value="AIチャット">AIチャット</option>
+        <option value="検索">検索</option>
+        <option value="メモ">メモ</option>
+        <option value="ごみ箱">ごみ箱</option>
+    </select>
+    <button type="button"  onclick="func_search_kind_detail()" >内容表示 </button>
+    <button type="button"  onclick="func_ajax_test()" >ajax_test</button><br>
+
+    <label for="area">天気予報の地域を選択してください</label>
+    <select id="area">
+        <option value="020000">青森県</option>	 
+        <option value="050000">秋田県</option>	 
+        <option value="030000">岩手県</option>	 
+        <option value="040000">宮城県</option>	 
+        <option value="060000">山形県</option>	 
+        <option value="070000">福島県</option>	 
+        <option value="080000">茨城県</option>	 
+        <option value="090000">栃木県</option>	 
+        <option value="100000">群馬県</option>	 
+        <option value="110000">埼玉県</option>	 
+        <option value="130000">東京都</option>	 
+        <option value="120000">千葉県</option>	 
+        <option value="140000">神奈川県</option> 
+        <option value="200000">長野県</option>	 
+        <option value="190000">山梨県</option>	 
+        <option value="220000">静岡県</option>	 
+        <option value="230000">愛知県</option>	 
+        <option value="210000">岐阜県</option>	 
+        <option value="240000">三重県</option>	 
+        <option value="150000">新潟県</option>	 
+        <option value="160000">富山県</option>	 
+        <option value="170000">石川県</option>	 
+        <option value="180000">福井県</option>	 
+        <option value="250000">滋賀県</option>	 
+        <option value="260000">京都府</option>	 
+        <option value="270000">大阪府</option>	 
+        <option value="280000">兵庫県</option>	 
+        <option value="290000">奈良県</option>	 
+        <option value="300000">和歌山県</option> 
+        <option value="330000">岡山県</option>	 
+        <option value="340000">広島県</option>	 
+        <option value="320000">島根県</option>	 
+        <option value="310000">鳥取県</option>	 
+        <option value="360000">徳島県</option>	 
+        <option value="370000">香川県</option>	 
+        <option value="380000">愛媛県</option>	 
+        <option value="390000">高知県</option>	 
+        <option value="350000">山口県</option>	 
+        <option value="400000">福岡県</option>	 
+        <option value="440000">大分県</option>	 
+        <option value="420000">長崎県</option>	 
+        <option value="410000">佐賀県</option>	 
+        <option value="430000">熊本県</option>	 
+        <option value="450000">宮崎県</option>	 
+        <option value="460100">鹿児島県</option> 
+        </select>
+	<input type="button" value="天気予報を見る" onclick="checkButton()"><br>
+
+    <button type="button"  onclick="func_news()" >ニュース</button>URLが優先/  
+    find_allのパラメータ<input type="text" id="text8" size="10" value="a" />
+    find_all選択肢<select name="findall" id="findall">
+        <option value="a">a</option>
+        <option value="p">p</option>
+        <option value="div">div</option>
+        <option value="img">img</option>
+        <option value="picture">picture</option>
+        <option value="li">li</option>
+        <option value="span">span</option>
+        <option value="direct">direct</option>
+    </select><br>
+
+
+    ニュースカテゴリ<select name="scrapeaction" id="scrapeaction">
+        <option value="http://localhost">--------</option>
+        <option value="https://kandorastart.com/karyu">華流ドラマ（中国・台湾ドラマ）</option>
+        <option value="https://news.yahoo.co.jp/ranking/access/news">アクセスランキング</option>
+        <option value="https://news.yahoo.co.jp/polls">みんなの意見</option>
+        <option value="https://news.yahoo.co.jp/ranking/comment">コメントランキング</option>
+        <option value="https://weather.yahoo.co.jp/weather/">天気</option>
+        <option value="https://news.yahoo.co.jp/ranking/access/magazine">雑誌</option>
+        <option value="https://news.yahoo.co.jp/ranking/access/photo">写真</option>
+        <option value="https://news.yahoo.co.jp/ranking/access/photo/local">地域</option>
+        <option value="https://news.yahoo.co.jp/categories/science">科学</option>
+        <option value="https://news.yahoo.co.jp/live">ライブ</option>
+        <option value="https://chiebukuro.yahoo.co.jp/?fr=ytop_menu">知恵袋</option>
+        <option value="https://newswitch.jp/articles/latest">日刊工業新聞</option>
+        <option value="https://news.yahoo.co.jp/flash">速報</option>
+        <option value="https://news.yahoo.co.jp/topics/top-picks">yahooトップ</option>
+        <option value="https://news.yahoo.co.jp/categories/entertainment">yahooエンタメ</option>
+        <option value="https://news.yahoo.co.jp/categories/sports">yahooスポーツ</option>
+        <option value="https://news.yahoo.co.jp/categories/business">yahoo　経済</option>
+        <option value="https://news.yahoo.co.jp/categories/it">yahoo　IT</option>
+        <option value="https://www.nikkansports.com/">日刊スポーツ</option>
+        <option value="https://sports.yahoo.co.jp/list/news/mlb?genre=mlb">MLBニュース</option>
+        <option value="https://news.biglobe.ne.jp/ranking/topics//">biglobe トピックス</option>
+        <option value="https://www.nikkei.com/business/net-media/">日経ビジネス</option>
+    </select>
+    <button type="button"  onclick="func_list()" >URLリスト</button>
+    フィルター<input type="text" id="text9" size="10" value="" /><br>
+    <button type="button"  onclick="func_favorite()" >お気に入り追加</button><br>  
+    URL<input type="text" id="text6" size="75" value="" /><br>
+    <button type="button"  onclick="func_one()" >DBの1レコード表示 </button>
+
+    レコード番号<input type="text" id="text3" size="10" value="" />
+    <button type="button"  onclick="func_chg()" >クリップへの変更 </button><br>
+
+    <button type="button"  onclick="func_ai()" >AIチャット </button>
+    <button type="button"  onclick="func_memo()" >メモの記録(DB) </button><br>
+    メモ題名/AIチャットの質問/ニュースコメント/お気に入り名称<br>
+    <input type="text" id="text5" size="66" value="" /><br>
+    サブタイトル変更<br>
+    <input type="text" id="text15" size="66" value="" /><br>
+    メモ内容<br>
+    <textarea id="text4" name="Contents" ROWS=10 COLS=80></textarea><br>
+
+
+
+    <input class="button2"  type="button" value="クリア" onclick="clearTextarea()" ><br>
+
+    <button type="button"  onclick="func_del()" >DBの1レコード削除 </button>
+    <button type="button"  onclick="func_trush()" >ごみ箱を空にする</button><br>
+    <p id="inbox"></p>
+
+    <script src="https://code.jquery.com/jquery-2.2.4.js" ></script>
+
+<script>
+    function checkButton(){
+    $(function(){
+            var url = "https://www.jma.go.jp/bosai/forecast/data/overview_forecast/"+area.value+".json";
+            $.ajax({
+              type: "GET",
+              url: url,
+              dataType: "json",
+              // 取得に成功したときの処理
+              success:function(data){
+                console.log(JSON.stringify(data, null, 2));
+                var data_text = data.text; //data.キー名で値を参照
+                var smp=document.getElementById("text4");
+                smp.innerHTML = data_text;
+              },
+              // 完了したときの処理
+              complete:function(){
+                console.log("通信が完了しました。");
+
+		func_memo();
+              },
+              // 失敗したときの処理
+              error:function(){
+                console.log("通信に失敗しました。");
+              }
+            });
+          });
+          };
+
+
+    const shinfindall = () => {
+        const findall = document.getElementById("findall");
+        const memo1 = document.getElementById("text8");
+        const findallIndex = findall.selectedIndex;
+        memo1.value = findall.options[findallIndex].textContent;
+    }
+    document.getElementById("findall").onchange = shinfindall;
+
+
+    const shinhannin = () => {
+	const hannin = document.getElementById("scrapeaction");
+	const memo = document.getElementById("text5");
+	const hanninIndex = hannin.selectedIndex;
+	memo.value = hannin.options[hanninIndex].textContent;
+	func_news();
+    }
+    document.getElementById("scrapeaction").onchange = shinhannin;
+
+    const shintenki = () => {
+	const tenki = document.getElementById("area");
+	const memo = document.getElementById("text5");
+	const tenkiIndex = tenki.selectedIndex;
+	memo.value = tenki.options[tenkiIndex].textContent+"の天気";
+    }
+    document.getElementById("area").onchange = shintenki;
+
+    function inputChange(event){
+        console.log(event.currentTarget.value);
+        func_search_kind();
+
+    }
+    let nameaction = document.getElementById('nameaction');
+    nameaction.addEventListener('change', inputChange);
+
+
+
+    function clearTextarea() {
+	    var textareaForm = document.getElementById("text2");
+        textareaForm.value = '';
+	    var textareaForm = document.getElementById("text3");
+        textareaForm.value = '';
+	    var textareaForm = document.getElementById("text4");
+        textareaForm.value = '';
+	    var textareaForm = document.getElementById("text5");
+        textareaForm.value = '';
+	    var textareaForm = document.getElementById("text6");
+        textareaForm.value = '';
+	    var textareaForm = document.getElementById("text15");
+        textareaForm.value = '';
+    }
+
+    function func_memo() {
+        let str2 = document.getElementById("text4").value;
+        if(str2==""){
+            str2 = "";
+        }
+        let str3 = document.getElementById("text5").value;
+        if(str3==""){
+            str3 = "";
+        }
+        let str4 = document.getElementById("text7").value;
+        if(str4==""){
+            str4 = scrapeaction.value;
+        }
+        $.ajax({
+
+            url:'./cgi-bin/memo_write.py',
+            type:'POST',
+            data:{sent2:str2,sent3:str3,sent4:str4}
+        })
+        .done(function(data){
+            var smp=document.getElementById("inbox");
+            smp.innerHTML = data;
+
+        })
+        .fail(function(){
+            var smp=document.getElementById("inbox");
+            smp.innerHTML = "failed";
+        });
+    }
+
+
+    function func_ai() {
+        let str2 = document.getElementById("text4").value;
+        if(str2==""){
+            str2 = "";
+        }
+        let str3 = document.getElementById("text5").value;
+        if(str3==""){
+            str3 = "";
+        }
+        let str4 = document.getElementById("text7").value;
+        if(str4==""){
+            str4 = scrapeaction.value;
+        }
+        $.ajax({
+
+            url:'./cgi-bin/ai_chat.py',
+            type:'POST',
+            data:{sent2:str2,sent3:str3,sent4:str4}
+        })
+        .done(function(data){
+            var smp=document.getElementById("inbox");
+            smp.innerHTML = data;
+
+        })
+        .fail(function(){
+            var smp=document.getElementById("inbox");
+            smp.innerHTML = "failed";
+        });
+    }
+
+
+    function func_all() {
+        let str2 = document.getElementById("text2").value;
+        if(str2==""){
+            str2 = "";
+        }
+        let str4 = document.getElementById("text7").value;
+        if(str4==""){
+            str4 = scrapeaction.value;
+        }
+        $.ajax({
+
+            url:'./cgi-bin/db_view_all.py',
+            type:'POST',
+            data:{sent2:str2,sent4:str4}
+        })
+        .done(function(data){
+            var smp=document.getElementById("inbox");
+            smp.innerHTML = data;
+
+        })
+        .fail(function(){
+            var smp=document.getElementById("inbox");
+            smp.innerHTML = "failed";
+        });
+    }
+
+    function func_db_search() {
+        let str2 = document.getElementById("text2").value;
+        if(str2==""){
+            str2 = "";
+        }
+        let str4 = document.getElementById("text7").value;
+        if(str4==""){
+            str4 = scrapeaction.value;
+        }
+        $.ajax({
+            url:'./cgi-bin/db_search.py',
+            type:'POST',
+            data:{sent2:str2,sent4:str4}
+        })
+        .done(function(data){
+            var smp=document.getElementById("inbox");
+            smp.innerHTML = data;
+
+        })
+        .fail(function(){
+            var smp=document.getElementById("inbox");
+            smp.innerHTML = "failed";
+        });
+    }
+   function func_db_search_cat() {
+        let str2 = document.getElementById("text2").value;
+        if(str2==""){
+            str2 = "";
+        }
+        let str4 = document.getElementById("text7").value;
+        if(str4==""){
+            str4 = scrapeaction.value;
+        }
+        $.ajax({
+            url:'./cgi-bin/db_search_cat.py',
+            type:'POST',
+            data:{sent2:str2,sent4:str4}
+        })
+        .done(function(data){
+            var smp=document.getElementById("inbox");
+            smp.innerHTML = data;
+
+        })
+        .fail(function(){
+            var smp=document.getElementById("inbox");
+            smp.innerHTML = "failed";
+        });
+    }
+
+   function func_db_search_detail() {
+        let str2 = document.getElementById("text2").value;
+        if(str2==""){
+            str2 = "";
+        }
+        let str4 = document.getElementById("text7").value;
+        if(str4==""){
+            str4 = scrapeaction.value;
+        }
+        $.ajax({
+            url:'./cgi-bin/db_search_detail.py',
+            type:'POST',
+            data:{sent2:str2,sent4:str4}
+        })
+        .done(function(data){
+            var smp=document.getElementById("inbox");
+            smp.innerHTML = data;
+
+        })
+        .fail(function(){
+            var smp=document.getElementById("inbox");
+            smp.innerHTML = "failed";
+        });
+    }
+
+    function func_search_kind() {
+        let str2 = nameaction.value;
+        if(str2==""){
+            str2 = "";
+        }
+        let str4 = document.getElementById("text7").value;
+        if(str4==""){
+            str4 = scrapeaction.value;
+        }
+        $.ajax({
+            url:'./cgi-bin/db_search_kind.py',
+            type:'POST',
+            data:{sent2:str2,sent4:str4}
+        })
+        .done(function(data){
+            var smp=document.getElementById("inbox");
+            smp.innerHTML = data;
+
+        })
+        .fail(function(){
+            var smp=document.getElementById("inbox");
+            smp.innerHTML = "failed";
+        });
+    }
+
+    function func_ajax_test() {
+        let str2 = nameaction.value;
+        if(str2==""){
+            str2 = "";
+        }
+        let str4 = document.getElementById("text7").value;
+        if(str4==""){
+            str4 = scrapeaction.value;
+        }
+        $.ajax({
+            url:'./cgi-bin/cgi-bin/ajax_test.py',
+            type:'POST',
+            data:{sent2:str2,sent4:str4}
+        })
+        .done(function(data){
+            var smp=document.getElementById("inbox");
+            smp.innerHTML = data;
+            alert(data);
+
+        })
+        .fail(function(){
+            var smp=document.getElementById("inbox");
+            smp.innerHTML = "failed";
+        });
+    }
+
+
+
+
+    function func_search_kind_detail() {
+        let str2 = nameaction.value;
+        if(str2==""){
+            str2 = "";
+        }
+        let str4 = document.getElementById("text7").value;
+        if(str4==""){
+            str4 = scrapeaction.value;
+        }
+           
+        $.ajax({
+            url:'./cgi-bin/db_search_kind_detail.py',
+            
+            type:'POST',
+            data:{sent2:str2,sent4:str4}
+        })
+        .done(function(data){
+            var smp=document.getElementById("inbox");
+            smp.innerHTML = data;
+
+        })
+        .fail(function(){
+            var smp=document.getElementById("inbox");
+            smp.innerHTML = "failed";
+        });
+    }
+
+
+
+    function func_head() {
+        let str2 = document.getElementById("text2").value;
+        if(str2==""){
+            str2 = "";
+        }
+        let str4 = document.getElementById("text7").value;
+        if(str4==""){
+            str4 = scrapeaction.value;
+        }
+        $.ajax({
+
+            url:'./cgi-bin/db_view_head.py',
+            type:'POST',
+            data:{sent2:str2,sent4:str4}
+        })
+        .done(function(data){
+            var smp=document.getElementById("inbox");
+            smp.innerHTML = data;
+
+        })
+        .fail(function(){
+            var smp=document.getElementById("inbox");
+            smp.innerHTML = "failed";
+        });
+    }
+
+
+
+    function func_last() {
+        let str2 = document.getElementById("text2").value;
+        if(str2==""){
+            str2 = "";
+        }
+        let str4 = document.getElementById("text7").value;
+        if(str4==""){
+            str4 = scrapeaction.value;
+        }
+        $.ajax({
+
+            url:'./cgi-bin/db_view_last.py',
+            type:'POST',
+            data:{sent2:str2,sent4:str4}
+        })
+        .done(function(data){
+            var smp=document.getElementById("inbox");
+            smp.innerHTML = data;
+
+        })
+        .fail(function(){
+            var smp=document.getElementById("inbox");
+            smp.innerHTML = "failed";
+        });
+    }
+
+
+
+    function func_one() {
+        let str2 = document.getElementById("text3").value;
+        if(str2==""){
+            str2 = "";
+        }
+        let str4 = document.getElementById("text7").value;
+        if(str4==""){
+            str4 = scrapeaction.value;
+        }
+        $.ajax({
+
+            url:'./cgi-bin/db_view_one.py',
+            type:'POST',
+            data:{sent2:str2,sent4:str4}
+        })
+        .done(function(data){
+            var smp=document.getElementById("inbox");
+            smp.innerHTML = data;
+
+        })
+        .fail(function(){
+            var smp=document.getElementById("inbox");
+            smp.innerHTML = "failed";
+        });
+    }
+
+
+    function func_one_2(no) {
+
+        let str3 = document.getElementById("text2").value;
+        if(str3==""){
+            str3 = "";
+        }
+
+        let str2 = document.getElementById("text3").value;
+        if(str2==""){
+            str2 = "";
+        }
+        let str4 = document.getElementById("text7").value;
+        if(str4==""){
+            str4 = scrapeaction.value;
+        }
+        str2 = no;
+        $.ajax({
+
+            url:'./cgi-bin/db_view_one.py',
+            type:'POST',
+            data:{sent2:str2,sent3:str3,sent4:str4}
+        })
+        .done(function(data){
+            var smp=document.getElementById("inbox");
+            smp.innerHTML = data;
+
+        })
+        .fail(function(){
+            var smp=document.getElementById("inbox");
+            smp.innerHTML = "failed";
+        });
+    }
+
+    function func_one_3(no) {
+        let str2 = document.getElementById("text3").value;
+        if(str2==""){
+            str2 = "";
+        }
+        let str4 = document.getElementById("text7").value;
+        if(str4==""){
+            str4 = scrapeaction.value;
+        }
+        str2 = no;
+        $.ajax({
+
+            url:'./cgi-bin/db_view_one.py',
+            type:'POST',
+            data:{sent2:str2,sent4:str4}
+        })
+        .done(function(data){
+            var smp=document.getElementById("text4");
+            smp.innerHTML = data;
+
+        })
+        .fail(function(){
+            var smp=document.getElementById("inbox");
+            smp.innerHTML = "failed";
+        });
+    }
+
+    function  func_search(){
+        let str2 = document.getElementById("text2").value;
+        if(str2==""){
+            str2 = "";
+        }
+
+        let str4 = document.getElementById("text7").value;
+        if(str4==""){
+            str4 = scrapeaction.value;
+        }
+        $.ajax({
+
+            url:'./cgi-bin/inet_search.py',
+            type:'POST',
+            data:{sent2:str2,sent4:str4}
+        })
+        .done(function(data){
+            var smp=document.getElementById("inbox");
+            smp.innerHTML = data;
+
+        })
+        .fail(function(){
+            var smp=document.getElementById("inbox");
+            smp.innerHTML = "failed";
+        });
+
+
+    }
+
+    function  func_news(){
+        let str2 = document.getElementById("text6").value;
+        if(str2==""){
+            str2 = scrapeaction.value;
+        }
+        let str3 = document.getElementById("text5").value;
+
+	if(str3==""){
+		alert("ニュースカテゴリが未選択です");
+		return;
+	}
+        let str4 = document.getElementById("text7").value;
+        if(str4==""){
+            str4 = scrapeaction.value;
+        }
+
+        let str8 = document.getElementById("text8").value;
+        if(str8==""){
+            str8 = "a";
+        }
+
+        $.ajax({
+
+            url:'./cgi-bin/inet_news.py',
+            type:'POST',
+            data:{sent2:str2,sent3:str3,sent4:str4,sent8:str8}
+        })
+        .done(function(data){
+            var smp=document.getElementById("inbox");
+            smp.innerHTML = data;
+
+        })
+        .fail(function(){
+            var smp=document.getElementById("inbox");
+            smp.innerHTML = "failed";
+        });
+
+
+    }
+
+   function  func_news_list(url,comment){
+        let str2 = url;
+        if(str2==""){
+            str2 = scrapeaction.value;
+        }
+        let str3 = comment;
+
+        if(str3==""){
+                alert("ニュースカテゴリが未選択です");
+                return;
+        }
+        let str4 = document.getElementById("text7").value;
+        if(str4==""){
+            str4 = scrapeaction.value;
+        }
+
+        let str8 = document.getElementById("text8").value;
+        if(str8==""){
+            str8 = "a";
+        }
+
+        $.ajax({
+
+            url:'./cgi-bin/inet_news.py',
+            type:'POST',
+            data:{sent2:str2,sent3:str3,sent4:str4,sent8:str8}
+        })
+        .done(function(data){
+            var smp=document.getElementById("inbox");
+            smp.innerHTML = data;
+
+        })
+        .fail(function(){
+            var smp=document.getElementById("inbox");
+            smp.innerHTML = "failed";
+        });
+
+
+    }
+
+    function  func_favorite(){
+        let str2 = document.getElementById("text6").value;
+        if(str2==""){
+            str2 = scrapeaction.value;
+        }
+        let str3 = document.getElementById("text5").value;
+
+        let str4 = document.getElementById("text7").value;
+        if(str4==""){
+            str4 = scrapeaction.value;
+        }
+
+        let str8 = document.getElementById("text8").value;
+        if(str8==""){
+            str8 = "a";
+        }
+
+        $.ajax({
+
+            url:'./cgi-bin/inet_favorite.py',
+            type:'POST',
+            data:{sent2:str2,sent3:str3,sent4:str4,sent8:str8}
+        })
+        .done(function(data){
+            var smp=document.getElementById("inbox");
+            smp.innerHTML = data;
+
+        })
+        .fail(function(){
+            var smp=document.getElementById("inbox");
+            smp.innerHTML = "failed";
+        });
+
+
+    }
+
+
+    function  func_list(){
+        let str5 = document.getElementById("text9").value;
+        let str2 = document.getElementById("text6").value;
+        if(str2==""){
+            str2 = scrapeaction.value;
+        }
+
+        let str4 = document.getElementById("text7").value;
+        if(str4==""){
+            str4 = scrapeaction.value;
+        }
+        let str3 = document.getElementById("text5").value;
+
+	if(str3==""){
+		alert("ニュースカテゴリが未選択です");
+		return;
+	}
+
+
+        $.ajax({
+
+            url:'./cgi-bin/inet_list.py',
+            type:'POST',
+            data:{sent2:str2,sent3:str3,sent4:str4,sent5:str5}
+        })
+        .done(function(data){
+            var smp=document.getElementById("inbox");
+            smp.innerHTML = data;
+
+        })
+        .fail(function(){
+            var smp=document.getElementById("inbox");
+            smp.innerHTML = "failed";
+        });
+
+
+    }
+
+    function  func_list_next(url,comment){
+        let str2 = url;
+        if(str2==""){
+            str2 = scrapeaction.value;
+        }
+        let str3 = comment;
+
+        let str5 = document.getElementById("text9").value;
+
+        let str4 = document.getElementById("text7").value;
+        if(str4==""){
+            str4 = scrapeaction.value;
+        }
+
+        if(str3==""){
+                alert("ニュースカテゴリが未選択です");
+                return;
+        }
+
+
+        $.ajax({
+
+            url:'./cgi-bin/inet_list.py',
+            type:'POST',
+            data:{sent2:str2,sent3:str3,sent4:str4,sent5:str5}
+        })
+        .done(function(data){
+            var smp=document.getElementById("inbox");
+            smp.innerHTML = data;
+
+        })
+        .fail(function(){
+            var smp=document.getElementById("inbox");
+            smp.innerHTML = "failed";
+        });
+
+
+    }
+
+
+    function  func_chg(){
+        let str2 = document.getElementById("text3").value;
+        if(str2==""){
+            str2 = "";
+        }
+        let str4 = document.getElementById("text7").value;
+        if(str4==""){
+            str4 = scrapeaction.value;
+        }
+
+        $.ajax({
+
+            url:'./cgi-bin/db_chg.py',
+            type:'POST',
+            data:{sent2:str2,sent4:str4}
+        })
+        .done(function(data){
+            var smp=document.getElementById("inbox");
+            smp.innerHTML = data;
+
+        })
+        .fail(function(){
+            var smp=document.getElementById("inbox");
+            smp.innerHTML = "failed";
+        });
+
+
+    }
+    function  func_chg_1(no){
+        let str2 = no;
+        let str4 = document.getElementById("text7").value;
+        if(str4==""){
+            str4 = scrapeaction.value;
+        }
+
+        $.ajax({
+
+            url:'./cgi-bin/db_chg.py',
+            type:'POST',
+            data:{sent2:str2,sent4:str4}
+        })
+        .done(function(data){
+            var smp=document.getElementById("inbox");
+            smp.innerHTML = data;
+
+        })
+        .fail(function(){
+            var smp=document.getElementById("inbox");
+            smp.innerHTML = "failed";
+        });
+
+
+    }
+    function  func_chg_sub_title(no){
+        let str2 = no;
+        let str4 = document.getElementById("text7").value;
+        if(str4==""){
+            str4 = scrapeaction.value;
+        }
+        let str5 = document.getElementById("text15").value;
+        if(str5==""){
+            alert("サブタイトル未入力");
+            return;
+        }
+
+        $.ajax({
+
+            url:'./cgi-bin/chg_sub_title.py',
+            type:'POST',
+            data:{sent2:str2,sent4:str4,sent5:str5}
+        })
+        .done(function(data){
+            var smp=document.getElementById("inbox");
+            smp.innerHTML = data;
+            func_search_kind();
+
+        })
+        .fail(function(){
+            var smp=document.getElementById("inbox");
+            smp.innerHTML = "failed";
+        });
+
+
+    }
+
+    function  func_del(){
+        let str2 = document.getElementById("text3").value;
+        if(str2==""){
+            str2 = "";
+        }
+        let str4 = document.getElementById("text7").value;
+        if(str4==""){
+            str4 = scrapeaction.value;
+        }
+
+        $.ajax({
+
+            url:'./cgi-bin/db_del.py',
+            type:'POST',
+            data:{sent2:str2,sent4:str4}
+        })
+        .done(function(data){
+            var smp=document.getElementById("inbox");
+            smp.innerHTML = data;
+
+        })
+        .fail(function(){
+            var smp=document.getElementById("inbox");
+            smp.innerHTML = "failed";
+        });
+
+
+    }
+    function  func_trush(){
+        let str2 = document.getElementById("text3").value;
+        if(str2==""){
+            str2 = "";
+        }
+        let str4 = document.getElementById("text7").value;
+        if(str4==""){
+            str4 = scrapeaction.value;
+        }
+
+        $.ajax({
+
+            url:'./cgi-bin/db_trush.py',
+            type:'POST',
+            data:{sent2:str2,sent4:str4}
+        })
+        .done(function(data){
+            var smp=document.getElementById("inbox");
+            smp.innerHTML = data;
+
+        })
+        .fail(function(){
+            var smp=document.getElementById("inbox");
+            smp.innerHTML = "failed";
+        });
+
+
+    }
+    function  func_trush_one(no){
+        let str2 = document.getElementById("text3").value;
+        if(str2==""){
+            str2 = "";
+        }
+        let str4 = document.getElementById("text7").value;
+        if(str4==""){
+            str4 = scrapeaction.value;
+        }
+        str2=no
+        $.ajax({
+
+            url:'./cgi-bin/db_trush_one.py',
+            type:'POST',
+            data:{sent2:str2,sent4:str4}
+        })
+        .done(function(data){
+            var smp=document.getElementById("inbox");
+            smp.innerHTML = data;
+            func_search_kind();
+
+        })
+        .fail(function(){
+            var smp=document.getElementById("inbox");
+            smp.innerHTML = "failed";
+        });
+
+
+    }
+    function  func_del_2(no){
+        let str2 = document.getElementById("text3").value;
+        if(str2==""){
+            str2 = "";
+        }
+        let str4 = document.getElementById("text7").value;
+        if(str4==""){
+            str4 = scrapeaction.value;
+        }
+	str2=no
+        $.ajax({
+
+            url:'./cgi-bin/db_del.py',
+            type:'POST',
+            data:{sent2:str2,sent4:str4}
+        })
+        .done(function(data){
+            var smp=document.getElementById("inbox");
+            smp.innerHTML = data;
+	    func_search_kind();
+
+        })
+        .fail(function(){
+            var smp=document.getElementById("inbox");
+            smp.innerHTML = "failed";
+        });
+
+
+    }
+    function  func_del_3(no){
+        let str2 = document.getElementById("text3").value;
+        if(str2==""){
+            str2 = "";
+        }
+        let str4 = document.getElementById("text7").value;
+        if(str4==""){
+            str4 = scrapeaction.value;
+        }
+	str2=no
+        $.ajax({
+
+            url:'./cgi-bin/db_del.py',
+            type:'POST',
+            data:{sent2:str2,sent4:str4}
+        })
+        .done(function(data){
+            var smp=document.getElementById("inbox");
+            smp.innerHTML = data;
+	    func_head();
+
+        })
+        .fail(function(){
+            var smp=document.getElementById("inbox");
+            smp.innerHTML = "failed";
+        });
+
+
+    }
+
+</script>
+
+</body>
+</html>
