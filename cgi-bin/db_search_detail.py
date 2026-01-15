@@ -81,7 +81,7 @@ with closing(sqlite3.connect(dbname)) as conn:
             find_data.append(add_string2)
 
             row_str=str(row[:7])
-            row_str=row_str.replace(zip_code,"<font color=\"red\">"  + zip_code + "</font>" )
+            row_str=row_str.replace(zip_code,"<font size=\"20\" font color=\"red\">"  + zip_code + "</font>" )
             row_str=row_str + "<br>"
             find_data.append(row_str)
     except:
