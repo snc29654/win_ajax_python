@@ -65,17 +65,17 @@ with closing(sqlite3.connect(dbname)) as conn:
     Contents=Contents.replace("<a","<a target=\"_blank\"")
     
     if (split_len==3):
-        Contents=Contents.replace(zip_code_split[0],"<font color=\"red\">"  + zip_code_split[0] + "</font>" )
-        Contents=Contents.replace(zip_code_split[1],"<font color=\"red\">"  + zip_code_split[1] + "</font>" )
-        Contents=Contents.replace(zip_code_split[2],"<font color=\"red\">"  + zip_code_split[2] + "</font>" )
+        Contents=Contents.replace(zip_code_split[0],"<font color=\"green\">"  + zip_code_split[0] + "</font>" )
+        Contents=Contents.replace(zip_code_split[1],"<font color=\"green\">"  + zip_code_split[1] + "</font>" )
+        Contents=Contents.replace(zip_code_split[2],"<font color=\"green\">"  + zip_code_split[2] + "</font>" )
     if (split_len==2):
-        Contents=Contents.replace(zip_code_split[0],"<font color=\"red\">"  + zip_code_split[0] + "</font>" )
-        Contents=Contents.replace(zip_code_split[1],"<font color=\"red\">"  + zip_code_split[1] + "</font>" )
+        Contents=Contents.replace(zip_code_split[0],"<font color=\"green\">"  + zip_code_split[0] + "</font>" )
+        Contents=Contents.replace(zip_code_split[1],"<font color=\"green\">"  + zip_code_split[1] + "</font>" )
     if (split_len==1):
-        Contents=Contents.replace(zip_code_split[0],"<font color=\"red\">"  + zip_code_split[0] + "</font>" )
+        Contents=Contents.replace(zip_code_split[0],"<font color=\"green\">"  + zip_code_split[0] + "</font>" )
     
-    #Contents=Contents.replace(zip_code,"<font color=\"red\">"  + zip_code + "</font>" )
-    zip_code="<font color=\"red\">"  + zip_code + "</font>"
+    #Contents=Contents.replace(zip_code,"<font color=\"green\">"  + zip_code + "</font>" )
+    zip_code="<font color=\"green\">"  + zip_code + "</font>"
 
     zip_code=zip_code.replace("\u3000"," ")
 
